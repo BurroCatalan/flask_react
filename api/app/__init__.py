@@ -9,8 +9,10 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-from app import models
-
 @app.route('/time')
 def get_current_time():
     return {'time': time.time()}
+
+from app import models
+
+
