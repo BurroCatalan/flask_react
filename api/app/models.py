@@ -1,4 +1,5 @@
 from app import db
+#import json
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -8,3 +9,6 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+
+    #def toJSON(self):
+#	return json.dumps(self, default=lambda o: o.__d sort_keys=True, indent=4)

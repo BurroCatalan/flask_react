@@ -11,6 +11,13 @@ function App() {
     });
   }, []);
 
+const [currentUser, setCurrentUser] = useState(0);
+
+  useEffect(() => {
+    fetch('/user').then(res => res.json()).then(data => {
+      setCurrentUser(data.user);
+    });
+  }, []);
   return (
       <div className="App">
         <div className="App-header">
@@ -18,6 +25,7 @@ function App() {
           <h2>Welcome to React you fool</h2>
         </div>
 <p>The current time is {currentTime}.</p>
+<p>The user is {currentUser}.</p>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
