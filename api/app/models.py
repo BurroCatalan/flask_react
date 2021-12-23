@@ -24,9 +24,11 @@ class ProjectRequest(db.Model):
     project_request_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), index=False, unique=False)
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'))
-    project_type_id =db.Column(db.Integer, db.ForeignKey('project_type.id'))
-    creator = db.Column(db.Integer, db.ForeignKey('user.id'))
-    status = db.Column(db.Integer, db.ForeignKey('status.status_id'))
+    project_type_id =db.Column(db.Integer, db.ForeignKey('project_type.project_type_id'))
+    creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    status_id = db.Column(db.Integer, db.ForeignKey('status.status_id'))
+    status = relationship("Status", backref='project_requests', lazy=True)
+
 
     def __repr__(self):
         return '<ProjectRequest {}>'.format(self.project_request_id)
@@ -51,14 +53,19 @@ class Customer(db.Model):
 class Status(db.Model):
     status_id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(50), index=False, unique=True)
+    
 
     def __repr__(self):
         return '<ProjectType {}>'.format(self.description)
 
 class StatusNet(db.Model):
     status_net_id = db.Column(db.Integer, primary_key=True)
-    status_id = relationship("Status")
-    predecessor_status_id = relationship("Status")
+    status_id = db.Column(db.Integer, db.ForeignKey('status.status_id'))
+    predecessor_status_id = db.Column(db.Integer, db.ForeignKey('status.status_id'))
+
+    statusNetStatuus = relationship('Status', foreign_keys=[status_id], lazy=True)
+    statusNetPredecessors = relationship('Status', foreign_keys=[predecessor_status_id], lazy=True)
+
 
     def __repr__(self):
         return '<ProjectType {}>'.format(self.description)
