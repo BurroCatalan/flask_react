@@ -10,6 +10,8 @@ class User(db.Model):
     last_name = db.Column(db.String(100), index=False, unique=False)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+    projectRequests = relationship('ProjectRequest', backref='user', lazy=True)
+
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -21,10 +23,10 @@ class User(db.Model):
 class ProjectRequest(db.Model):
     project_request_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), index=False, unique=False)
-    customer_id = relationship("Customer")
-    project_type = relationship("Project_Type")
-    creator = relationship("User")
-    status = relationship("Status")
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'))
+    project_type_id =db.Column(db.Integer, db.ForeignKey('project_type.id'))
+    creator = db.Column(db.Integer, db.ForeignKey('user.id'))
+    status = db.Column(db.Integer, db.ForeignKey('status.status_id'))
 
     def __repr__(self):
         return '<ProjectRequest {}>'.format(self.project_request_id)
@@ -33,6 +35,7 @@ class ProjectType(db.Model):
     project_type_id = db.Column(db.Integer, primary_key=True)
     abbreviation = db.Column(db.String(5), index=False, unique=True)
     description = db.Column(db.String(50), index=False, unique=False)
+    projectRequests = relationship('ProjectRequest', backref='project_type', lazy=True)
 
     def __repr__(self):
         return '<ProjectType {}>'.format(self.abbreviation)
@@ -40,6 +43,7 @@ class ProjectType(db.Model):
 class Customer(db.Model):
     customer_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), index=False, unique=True)
+    projectRequests = relationship('ProjectRequest', backref='customer', lazy=True)
 
     def __repr__(self):
         return '<ProjectType {}>'.format(self.name)
