@@ -6,10 +6,10 @@ from sqlalchemy.orm import relationship
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
-    first_name = db.Column(db.String(100), index=False, unique=False)
-    last_name = db.Column(db.String(100), index=False, unique=False)
+    firstName = db.Column(db.String(100), index=False, unique=False)
+    lastName = db.Column(db.String(100), index=False, unique=False)
     email = db.Column(db.String(120), index=True, unique=True)
-    password_hash = db.Column(db.String(128))
+    passwordHash = db.Column(db.String(128))
     projectRequests = relationship('ProjectRequest', backref='user', lazy=True)
 
 

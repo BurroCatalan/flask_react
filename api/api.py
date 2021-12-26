@@ -1,4 +1,3 @@
-from api.app.models import StatusNet
 from app import app, db
 from app.models import User, ProjectRequest, ProjectType, Status, StatusNet, Customer
 
