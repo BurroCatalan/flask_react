@@ -1,4 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
+import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
@@ -44,42 +45,56 @@ const submitStyle = {
   color: 'white',
   display: 'block'
 };
-/*
+
+
 function App() {
   const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
-    fetch('/time').then(res => res.json()).then(data => {
+    fetch('/api/time').then(res => res.json()).then(data => {
       setCurrentTime(data.time);
     });
   }, []);
 
-const [currentUser, setCurrentUser] = useState(0);
-
-  useEffect(() => {
-    fetch('/user').then(res => res.json()).then(data => {
-      setCurrentUser(data.user);
-    });
-  }, []);
   return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React you fool</h2>
-        </div>
-<p>The current time is {currentTime}.</p>
-<p>The user is {currentUser}.</p>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+    <div className="App">
+      <header className="App-header">
+        <BrowserRouter>
+          <div>
+            <Link className="App-link" to="/">Home</Link>
+            &nbsp;|&nbsp;
+            <Link className="App-link" to="/page2">Page2</Link>
+          </div>
+          <Switch>
+            <Route exact path="/">
+                <img src={logo} className="App-logo" alt="logo" />
+                <p>
+                  Edit <code>src/App.js</code> and save to reload.
+                </p>
+                <a
+                  className="App-link"
+                  href="https://reactjs.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Learn React
+                </a>
+                <p>The current time is {currentTime}.</p>
+            </Route>
+            <Route path="/page2">
+                <p>This is page 2!</p>
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </header>
+    </div>
+  );
+}
 
 export default App;
 
 
-*/
+/*
 
 
 
@@ -130,3 +145,4 @@ const App = () => {
 };
 
 export default App;
+*/

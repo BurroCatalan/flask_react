@@ -6,20 +6,26 @@ from flask_login import LoginManager
 from config import Config
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../build', static_url_path='/')
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db, render_as_batch=True)
+login = LoginManager(app)
+
 from app import models
 from app.models import User
 
 u = User.query.get(1)
 
-@app.route('/time')
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
+
+@app.route('/api/time')
 def get_current_time():
     return {'time': time.time()}
 
-@app.route('/user')
+@app.route('/api/user')
 def get_first_user():
     return {'user': u.username}
 

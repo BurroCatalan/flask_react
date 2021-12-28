@@ -1,4 +1,4 @@
-from flask import Flask
+""" om flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from config import Config
@@ -9,3 +9,4 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db, render_as_batch=True)
 
 from app import routes, models
+ """
