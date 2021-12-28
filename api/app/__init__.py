@@ -9,15 +9,15 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db, render_as_batch=True)
 from app import models
-#from app.models import User
+from app.models import User
 
-#u = User.query.get(1)
+u = User.query.get(1)
 
 @app.route('/time')
 def get_current_time():
     return {'time': time.time()}
 
-#@app.route('/user')
-#def get_first_user():
-#    return {'user': u.username}
+@app.route('/user')
+def get_first_user():
+    return {'user': u.username}
 
