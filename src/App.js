@@ -8,10 +8,17 @@ export default function App() {
   const [username, setUsername] = React.useState(null);
   const [currentTime, setCurrentTime] = useState(null);
   const [userToken, setUserToken] = useState(null);
+  const [apiUser, setapiUser] = useState(null);
 
   useEffect(() => {
     fetch('/api/time').then(res => res.json()).then(data => {
       setCurrentTime(data.time);
+    });
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/login').then(res => res.json()).then(data => {
+      setUserToken(data.token);
     });
   }, []);
 
@@ -30,6 +37,7 @@ export default function App() {
       <h1>Hello CodeSandbox</h1>
       <h2>Start editing to see some magic happen!</h2>
       <p>The current time is {currentTime}.</p>
+      <p>The token for {username} is {currentTime}.</p>
       <UserContext.Provider value={currentUser}>
         <Navigation />
       </UserContext.Provider>
