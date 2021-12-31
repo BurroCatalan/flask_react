@@ -1,5 +1,4 @@
 import "./styles.css";
-import React from "react";
 import { UserContext } from "./App.js";
 import PropTypes from 'prop-types';
 import React, {useRef} from 'react';
