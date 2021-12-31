@@ -37,7 +37,7 @@ export default function App() {
       <h1>Hello CodeSandbox</h1>
       <h2>Start editing to see some magic happen!</h2>
       <p>The current time is {currentTime}.</p>
-      <p>The token for {username} is {currentTime}.</p>
+      <p>The token for {username} is {token}.</p>
       <UserContext.Provider value={currentUser}>
         <Navigation />
       </UserContext.Provider>
