@@ -1,6 +1,6 @@
 import "./styles.css";
 import { UserContext } from "./App.js";
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import React, {useRef} from 'react';
 
 async function loginUser(credentials) {
@@ -18,6 +18,7 @@ export default function Login({ setToken }) {
   const username = React.useRef();
   const password = React.useRef();
   const currentUser = React.useContext(UserContext);
+  const {debugINfo, setDebugInfo} = React.useState(null);
 
   const onSubmit = (ev) => {
     ev.preventDefault();
@@ -39,12 +40,13 @@ export default function Login({ setToken }) {
     });
     setToken(token);
     console.log(token)
+    setDebugInfo(token);
   }
 
   
-Login.propTypes = {
-    setToken: PropTypes.func.isRequired
-  }
+//Login.propTypes = {
+//    setToken: PropTypes.func.isRequired
+//  }
 
 
   return (
@@ -74,7 +76,7 @@ Login.propTypes = {
                 </td>
               </tr>
               <tr>
-                <td />
+                <td><label className="Label">{debugInfo}</label></td>
                 <td>
                   <input className="SubmitButton" type="submit" value="Login" />
                 </td>
