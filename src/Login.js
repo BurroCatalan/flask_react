@@ -4,7 +4,7 @@ import { UserContext } from "./App.js";
 import React, {useRef} from 'react';
 
 async function loginUser(credentials) {
-    return fetch('burropi:5000/login', {
+    return fetch('burropi:5000/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -18,7 +18,7 @@ export default function Login({ setToken }) {
   const username = React.useRef();
   const password = React.useRef();
   const currentUser = React.useContext(UserContext);
-  const {debugINfo, setDebugInfo} = React.useState(null);
+  const {debugInfo, setDebugInfo} = React.useState(null);
 
   const onSubmit = (ev) => {
     ev.preventDefault();
