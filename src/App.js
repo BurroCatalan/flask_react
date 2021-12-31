@@ -17,7 +17,13 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    fetch('/api/login').then(res => res.json()).then(data => {
+    fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentials)
+    }).then(res => res.json()).then(data => {
       setUserToken(data.token);
     });
   }, []);
@@ -37,7 +43,7 @@ export default function App() {
       <h1>Hello CodeSandbox</h1>
       <h2>Start editing to see some magic happen!</h2>
       <p>The current time is {currentTime}.</p>
-      <p>The token for {username} is {token}.</p>
+      <p>The token for {username} is {userToken}.</p>
       <UserContext.Provider value={currentUser}>
         <Navigation />
       </UserContext.Provider>

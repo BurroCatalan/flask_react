@@ -18,7 +18,6 @@ export default function Login({ setToken }) {
   const username = React.useRef();
   const password = React.useRef();
   const currentUser = React.useContext(UserContext);
-  const {debugInfo, setDebugInfo} = React.useState(null);
 
   const onSubmit = (ev) => {
     ev.preventDefault();
@@ -40,7 +39,7 @@ export default function Login({ setToken }) {
     });
     setToken(token);
     console.log(token)
-    setDebugInfo(token);
+
   }
 
   
@@ -76,7 +75,7 @@ export default function Login({ setToken }) {
                 </td>
               </tr>
               <tr>
-                <td><label className="Label">{debugInfo}</label></td>
+                <td></td>
                 <td>
                   <input className="SubmitButton" type="submit" value="Login" />
                 </td>
