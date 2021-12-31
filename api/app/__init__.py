@@ -29,3 +29,7 @@ def get_current_time():
 def get_first_user():
     return {'user': u.username}
 
+@app.route('/api/login')
+def loginUser():
+    return {'token': 'test123'}
+

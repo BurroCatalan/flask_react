@@ -1,8 +1,21 @@
 import "./styles.css";
 import React from "react";
 import { UserContext } from "./App.js";
+import PropTypes from 'prop-types';
+import React, {useRef} from 'react';
 
-export default function Login() {
+async function loginUser(credentials) {
+    return fetch('burropi:5000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentials)
+    })
+      .then(data => data.json())
+   }
+
+export default function Login({ setToken }) {
   const username = React.useRef();
   const password = React.useRef();
   const currentUser = React.useContext(UserContext);
@@ -19,10 +32,26 @@ export default function Login() {
     }
   };
 
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const token = await loginUser({
+      username,
+      password
+    });
+    setToken(token);
+    console.log(token)
+  }
+
+  
+Login.propTypes = {
+    setToken: PropTypes.func.isRequired
+  }
+
+
   return (
     <div>
       {currentUser.username == null ? (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
           <table>
             <tbody>
               <tr>

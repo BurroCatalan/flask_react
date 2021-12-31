@@ -1,12 +1,13 @@
 import "./styles.css";
 import Navigation from "./Navigation.js";
-import React from "react";
+import React, { useState, useEffect } from 'react';
 
 export const UserContext = React.createContext();
 
 export default function App() {
   const [username, setUsername] = React.useState(null);
-  const [currentTime, setCurrentTime] = useState(0);
+  const [currentTime, setCurrentTime] = useState(null);
+  const [userToken, setUserToken] = useState(null);
 
   useEffect(() => {
     fetch('/api/time').then(res => res.json()).then(data => {
