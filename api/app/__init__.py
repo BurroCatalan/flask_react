@@ -1,5 +1,5 @@
 import time
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
@@ -29,7 +29,9 @@ def get_current_time():
 def get_first_user():
     return {'user': u.username}
 
-@app.route('/api/login')
-def loginUser():
-    return {'token': 'test123'}
+@app.route('/api/login', methods=['GET', 'POST'])
+def loginUser(input):
+    content = request.json
+
+    return {'token': content}
 
