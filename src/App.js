@@ -17,6 +17,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    const credentials = ['john','doe'];
     fetch('/api/login', {
       method: 'POST',
       headers: {
