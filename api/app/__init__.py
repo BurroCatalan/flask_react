@@ -30,8 +30,8 @@ def get_first_user():
     return {'user': u.username}
 
 @app.route('/api/login', methods=['GET', 'POST'])
-def loginUser(input):
+def loginUser():
     content = request.json
 
-    return {'token': content}
+    return {'token': content[1]}
 
