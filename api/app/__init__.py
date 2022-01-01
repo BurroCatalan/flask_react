@@ -12,7 +12,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db, render_as_batch=True)
 login = LoginManager(app)
 
-from app import models
+from app import models, tokens
 #from app.models import User
 
 #u = User.query.get(1)
