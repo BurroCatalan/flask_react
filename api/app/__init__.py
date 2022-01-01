@@ -39,19 +39,8 @@ def get_first_user():
 
 @app.route('/api/login', methods=['GET', 'POST'])
 def loginUser():
-<<<<<<< HEAD
-    if current_user.is_authenticated:
-        return
-
-    credentials = request.json
-=======
     content = request.json
-
     return {'token': content[1]}
->>>>>>> 45cbe10434ecdbdf1f3e217f1b7e449957e55923
-
-
-    return {'token': credentials}
 
 @app.route('/api/token')
 @auth.login_required
