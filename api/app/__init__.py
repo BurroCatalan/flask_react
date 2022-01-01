@@ -37,13 +37,13 @@ def get_current_time():
 #def get_first_user():
 #    return {'user': u.username}
 
-@app.route('/api/login', methods=['GET', 'POST'])
-def loginUser():
-    content = request.json
-    return {'token': content[1]}
+#@app.route('/api/login', methods=['GET', 'POST'])
+#def loginUser():
+#    content = request.json
+#    return {'token': content[1]}
 
-@app.route('/api/token')
-@auth.login_required
-def get_auth_token():
-    token = g.user.generate_auth_token()
-    return jsonify({ 'token': token.decode('ascii') })
+#@app.route('/api/token')
+#@auth.login_required
+#def get_auth_token():
+#    token = g.user.generate_auth_token()
+#    return jsonify({ 'token': token.decode('ascii') })
