@@ -13,17 +13,17 @@ migrate = Migrate(app, db, render_as_batch=True)
 login = LoginManager(app)
 
 from app import models
-from app.models import User
+#from app.models import User
 
-u = User.query.get(1)
+#u = User.query.get(1)
 
-@auth.verify_password
-def verify_password(username, password):
-    user = User.query.filter_by(username = username).first()
-    if not user or not user.verify_password(password):
-        return False
-    g.user = user
-    return True
+#@auth.verify_password
+#def verify_password(username, password):
+ #   user = User.query.filter_by(username = username).first()
+  #  if not user or not user.verify_password(password):
+   #     return False
+   # g.user = user
+   # return True
 
 @app.route('/')
 def index():
@@ -33,17 +33,17 @@ def index():
 def get_current_time():
     return {'time': time.time()}
 
-@app.route('/api/user')
-def get_first_user():
-    return {'user': u.username}
+#@app.route('/api/user')
+#def get_first_user():
+#    return {'user': u.username}
 
 @app.route('/api/login', methods=['GET', 'POST'])
 def loginUser():
     content = request.json
     return {'token': content[1]}
 
-@app.route('/api/token')
-@auth.login_required
-def get_auth_token():
-    token = g.user.generate_auth_token()
-    return jsonify({ 'token': token.decode('ascii') })
+#@app.route('/api/token')
+#@auth.login_required
+#def get_auth_token():
+#    token = g.user.generate_auth_token()
+#    return jsonify({ 'token': token.decode('ascii') })
